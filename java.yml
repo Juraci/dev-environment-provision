@@ -3,7 +3,7 @@
 - name: Ensures that Java 8 is available
   hosts: 127.0.0.1
   connection: local
-  sudo: yes
+  user: root
 
   tasks:
 
