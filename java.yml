@@ -1,0 +1,22 @@
+---
+
+- name: Ensures that Java 8 is available
+  hosts: 127.0.0.1
+  connection: local
+
+  tasks:
+
+  - name: Ensures python software properties present
+    apt: name=python-software-properties state=present
+
+  - name: Ensures ppa:webupd8team/java is present
+    apt_repository: repo='ppa:webupd8team/java' state=present
+
+  - name: Updates the index
+    apt: update_cache=yes
+
+  - name: Ensures java 8 package is intalled
+    apt: name=oracle-java8-installer state=present
+
+  - name: Verify that Java 8 -version command runs successfully
+    shell: java -version
