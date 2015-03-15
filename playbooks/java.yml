@@ -1,9 +1,9 @@
 ---
 
 - name: Ensures that Java 8 is available
-  hosts: 127.0.0.1
-  connection: local
-  user: juraci
+  hosts: monitornew
+# connection: local
+  user: ansible2
   sudo: yes
 
   tasks:
@@ -18,10 +18,7 @@
     apt: update_cache=yes
 
   - name: Agrees with license before it shows up
-    shell: echo "oracle-java8-installer shared/accepted-oracle-license-v1-1 select true" | sudo /usr/bin/debconf-set-selections
+    shell: echo oracle-java8-installer shared/accepted-oracle-license-v1-1 select true | /usr/bin/debconf-set-selections
 
   - name: Ensures java 8 package is installed
-    apt: name=oracle-java8-installer state=present
-
-  - name: Verify that Java 8 -version command runs successfully
-    shell: java -version
+    apt: pkg=oracle-java8-installer update-cache=yes state=present
