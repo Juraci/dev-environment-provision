@@ -1,7 +1,7 @@
 ---
 
 - name: Ensures that Java 8 is available
-  hosts: monitornew
+  hosts: "{{ node }}"
 # connection: local
   user: ansible2
   sudo: yes
@@ -21,4 +21,4 @@
     shell: echo oracle-java8-installer shared/accepted-oracle-license-v1-1 select true | /usr/bin/debconf-set-selections
 
   - name: Ensures java 8 package is installed
-    apt: pkg=oracle-java8-installer update-cache=yes state=present
+    apt: pkg=oracle-java8-installer update_cache=yes state=present
