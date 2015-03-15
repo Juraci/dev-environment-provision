@@ -2,8 +2,8 @@
 
 - name: Ensures that Java 8 is available
   hosts: "{{ node }}"
-# connection: local
-  user: ansible2
+  connection: local
+  user: juraci
   sudo: yes
 
   tasks:
