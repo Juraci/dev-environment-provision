@@ -18,7 +18,7 @@
     apt: update_cache=yes
 
   - name: Agrees with license before it shows up
-    shell: echo oracle-java8-installer shared/accepted-oracle-license-v1-1 select true | /usr/bin/debconf-set-selections
+    shell: echo oracle-java8-installer shared/accepted-oracle-license-v1-1 select true | sudo /usr/bin/debconf-set-selections
 
   - name: Ensures java 8 package is installed
     apt: pkg=oracle-java8-installer update_cache=yes state=present
