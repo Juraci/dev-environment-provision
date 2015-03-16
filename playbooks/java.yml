@@ -2,17 +2,13 @@
 
 - name: Ensures that Java 8 is available
   hosts: "{{ node }}"
-  connection: local
   user: juraci
   sudo: yes
 
   tasks:
 
-  - name: Updates the index
-    apt: update_cache=yes
-
   - name: Ensures python software properties present
-    apt: name=python-software-properties state=present
+    apt: name=python-software-properties update_cache=yes state=present
 
   - name: Ensures ppa:webupd8team/java is present
     apt_repository: repo='ppa:webupd8team/java' state=present
