@@ -8,6 +8,9 @@
 
   tasks:
 
+  - name: Updates the index
+    apt: update_cache=yes
+
   - name: Ensures python software properties present
     apt: name=python-software-properties state=present
 
