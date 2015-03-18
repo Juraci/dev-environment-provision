@@ -12,3 +12,9 @@
 
   - name: Ensures the .ssh directory exists and has the right access permissions
     file: path=/home/juraci/.ssh owner=juraci group=juraci mode=0777 state=directory
+
+  - name: Copy id_rsa to .ssh directory
+    copy: src=../resources/id_rsa dest=/home/juraci/.ssh/id_rsa owner=juraci group=juraci mode=0700
+
+  - name: Copy id_rsa.pub to .ssh directory
+    copy: src=../resources/id_rsa.pub dest=/home/juraci/.ssh/id_rsa.pub owner=juraci group=juraci
