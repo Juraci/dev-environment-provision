@@ -1,0 +1,14 @@
+---
+
+- name: Ensures that Git is available
+  hosts: "{{ node }}"
+  user: juraci
+  sudo: yes
+
+  tasks:
+
+  - name: Ensures git is present and in the latest version
+    apt: name=git update_cache=yes state=latest
+
+  - name: Ensures the .ssh directory exists and has the right access permissions
+    file: path=/home/juraci/.ssh owner=juraci group=juraci mode=0777 state=directory
