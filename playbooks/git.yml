@@ -1,6 +1,6 @@
 ---
 
-- name: Ensures that Git is installed and red to use
+- name: Ensures that Git is installed and ready to use
   hosts: "{{ node }}"
   user: juraci
   sudo: yes
