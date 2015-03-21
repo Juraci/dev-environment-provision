@@ -1,6 +1,6 @@
 ---
 
-- name: Ensures that Git is available
+- name: Ensures that Git is installed and red to use
   hosts: "{{ node }}"
   user: juraci
   sudo: yes
@@ -18,3 +18,6 @@
 
   - name: Copy id_rsa.pub to .ssh directory
     copy: src=../resources/id_rsa.pub dest=/home/juraci/.ssh/id_rsa.pub owner=juraci group=juraci
+
+  - name: Copy .gitconfig to the home directory
+    copy: src=../resources/.gitconfig dest=/home/juraci/.gitconfig owner=juraci group=juraci mode=0664

@@ -1,0 +1,42 @@
+[alias]
+  aa = add .
+  st = status
+  ci = commit
+  br = branch
+  co = checkout
+  df = diff
+  lg = log -p
+  pr = pull --rebase
+  dc = diff --cached
+  lg = log --graph --branches=* --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative -n 50
+	s = status -sb
+	dff = diff --color --color-words
+	current-branch = rev-parse --abbrev-ref HEAD
+	graph = log --graph --decorate --oneline --branches
+	l = log
+[color]
+  branch = auto
+  diff = auto
+  status = auto
+[color "branch"]
+  current = yellow reverse
+  local = yellow
+  remote = green
+[color "diff"]
+  meta = yellow bold
+  frag = magenta bold
+  old = red bold
+  new = green bold
+[color "status"]
+  added = yellow
+  changed = green
+  untracked = cyan
+[user]
+	name = Juraci
+	email = juraci.vieira@gmail.com
+[push]
+  default = current
+[credential]
+	helper = cache --timeout=3600
+[github]
+	user = Juraci
