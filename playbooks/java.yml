@@ -2,7 +2,7 @@
 
 - name: Ensures that Java 8 is available
   hosts: "{{ node }}"
-  user: juraci
+  user: "{{ user }}"
   sudo: yes
 
   tasks:

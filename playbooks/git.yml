@@ -2,7 +2,7 @@
 
 - name: Ensures that Git is installed and ready to use
   hosts: "{{ node }}"
-  user: juraci
+  user: "{{ user }}"
   sudo: yes
 
   tasks:
@@ -11,13 +11,19 @@
     apt: name=git update_cache=yes state=latest
 
   - name: Ensures the .ssh directory exists and has the right access permissions
-    file: path=/home/juraci/.ssh owner=juraci group=juraci mode=0777 state=directory
+    file: path=/home/{{ user }}/.ssh owner={{ user }} group={{ user }} mode=0777 state=directory
 
+    # the rsa private key must be in the resources folder
   - name: Copy id_rsa to .ssh directory
-    copy: src=../resources/id_rsa dest=/home/juraci/.ssh/id_rsa owner=juraci group=juraci mode=0700
+    copy: src=../resources/id_rsa dest=/home/{{ user }}/.ssh/id_rsa owner={{ user }} group={{ user }} mode=0700
 
+    # the rsa public key must be in the resources folder
   - name: Copy id_rsa.pub to .ssh directory
-    copy: src=../resources/id_rsa.pub dest=/home/juraci/.ssh/id_rsa.pub owner=juraci group=juraci
+    copy: src=../resources/id_rsa.pub dest=/home/{{ user }}/.ssh/id_rsa.pub owner={{ user }} group={{ user }}
 
   - name: Copy .gitconfig to the home directory
-    copy: src=../resources/.gitconfig dest=/home/juraci/.gitconfig owner=juraci group=juraci mode=0664
+    copy: src=../resources/.gitconfig dest=/home/{{ user }}/.gitconfig owner={{ user }} group={{ user }} mode=0664
+
+  # The steps bellow must be completed manually
+  # eval "$(ssh-agent -s)"
+  # ssh-add ~/.ssh/id_rsa
