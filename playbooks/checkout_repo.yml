@@ -7,7 +7,6 @@
   vars:
     repo_folder_name: swamp
     repo_url: git@github.com:Juraci/swamp.git
-    tag: v1.3.0
 
   tasks:
 
