@@ -1,0 +1,11 @@
+---
+
+- name: Ensures Bundler installation
+  hosts: "{{ node }}"
+  user: "{{ user }}"
+  sudo: no
+
+  tasks:
+
+  - name: Ensures that Bundler is installed
+    gem: name=bundler state=latest

@@ -11,7 +11,7 @@
     apt: name=git update_cache=yes state=latest
 
   - name: Ensures the .ssh directory exists and has the right access permissions
-    file: path=/home/{{ user }}/.ssh owner={{ user }} group={{ user }} mode=0777 state=directory
+    file: path=/home/{{ user }}/.ssh owner={{ user }} group={{ user }} state=directory
 
     # the rsa private key must be in the resources folder
   - name: Copy id_rsa to .ssh directory

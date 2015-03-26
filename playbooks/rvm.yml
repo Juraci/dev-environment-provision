@@ -1,0 +1,36 @@
+---
+
+- name: Installs rvm and ruby
+  hosts: "{{ node }}"
+  user: "{{ user }}"
+  sudo: no
+
+  vars:
+    gpg_server: hkp://keys.gnupg.net
+    public_key: 409B6B1796C275462A1703113804BB82D39DC0E3
+    ruby: 2.1
+
+  tasks:
+
+  - name: Check for rvm
+    shell: '{{ ansible_env.HOME }}/.rvm/bin/rvm --version'
+    register: rvm
+    failed_when: rvm.rc != 0
+    changed_when: rvm.rc == 2
+    ignore_errors: True
+
+  - name: Gets Michal Papis public key for rvm
+    shell: gpg --keyserver {{ gpg_server }} --recv-keys {{ public_key }}
+    when: rvm|failed
+
+  - name: Install rvm stable
+    shell: curl -sSL https://get.rvm.io | bash -s stable
+    when: rvm|failed
+
+  - name: Install ruby
+    shell: '{{ ansible_env.HOME }}/.rvm/bin/rvm install {{ ruby }}'
+    when: rvm|failed
+
+  - name: set the default ruby
+    shell: 'executable=/bin/bash source {{ ansible_env.HOME }}/.rvm/scripts/rvm && rvm use --default {{ ruby }}'
+    when: rvm|failed

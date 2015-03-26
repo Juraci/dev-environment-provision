@@ -1,0 +1,27 @@
+---
+
+- name: Ensures that the repo is present
+  hosts: "{{ node }}"
+  user: "{{ user }}"
+
+  vars:
+    repo_folder_name: swamp
+    repo_url: git@github.com:Juraci/swamp.git
+    tag: v1.3.0
+
+  tasks:
+
+  - name: Ensures git is present and in the latest version
+    apt: name=git update_cache=yes state=latest
+    sudo: yes
+
+  - name: Ensures the projects directory exists
+    file: path={{ ansible_env.HOME }}/{{ repo_folder_name }} owner={{ user }} group={{ user }} state=directory mode=0777
+    sudo: no
+
+  - name: Checkout the repository to an specific tag
+    sudo: no
+    git: repo={{ repo_url }}
+         dest={{ ansible_env.HOME }}/{{ repo_folder_name }}/
+         version={{ tag }}
+         accept_hostkey=yes

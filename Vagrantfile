@@ -21,16 +21,21 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   #   vb.gui = true
     vb.memory = 2048
   end
-
+=begin
   config.vm.provision "ansible" do |ansible|
-    ansible.inventory_path = "hosts"
-    ansible.playbook = "playbooks/java.yml"
+    #ansible.inventory_path = "hosts"
+    ansible.playbook = "playbooks/main.yml"
     ansible.sudo = true
-    ansible.verbose = "-vv"
+    ansible.verbose = "-vvvv"
     ansible.limit = 'all'
+    ansible.host_key_checking = false
     ansible.extra_vars = {
       node: "test_env",
-      user: "vagrant"
+      user: "vagrant",
+      ansible_ssh_user: 'vagrant',
+      ansible_connection: 'ssh',
+      ansible_ssh_args: '-o ForwardAgent=yes'
     }
   end
+=end
 end
