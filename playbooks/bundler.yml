@@ -1,6 +1,6 @@
 ---
 
-- name: Ensures Bundler installation
+- name: Ensures Bundler is installed
   hosts: "{{ node }}"
   user: "{{ user }}"
   sudo: no

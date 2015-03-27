@@ -1,5 +1,6 @@
 ---
-
+  - include: nodejs.yml
   - include: rvm.yml
   - include: bundler.yml
   - include: checkout_repo.yml
+  - include: bundle_app.yml

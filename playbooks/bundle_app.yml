@@ -5,10 +5,9 @@
   user: "{{ user }}"
   sudo: no
 
-  vars:
-    app_path: '{{ ansible_env.HOME }}/TwitterForZombies'
-
   tasks:
+
+    - include: app_vars.yml
 
     - name: Bundle install
       command: bash -lc "bundle install" chdir={{ app_path }}/

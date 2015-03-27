@@ -1,0 +1,5 @@
+ - set_fact: repo_url=git@github.com:Juraci/TwitterForZombies.git
+
+ - set_fact: repo_folder_name=TwitterForZombies
+
+ - set_fact: app_path={{ ansible_env.HOME }}/{{ repo_folder_name }}

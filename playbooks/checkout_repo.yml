@@ -4,11 +4,9 @@
   hosts: "{{ node }}"
   user: "{{ user }}"
 
-  vars:
-    repo_folder_name: swamp
-    repo_url: git@github.com:Juraci/swamp.git
-
   tasks:
+
+  - include: app_vars.yml
 
   - name: Ensures git is present and in the latest version
     apt: name=git update_cache=yes state=latest
