@@ -1,0 +1,11 @@
+---
+
+- name: Ensures nodejs installation
+  hosts: "{{ node }}"
+  user: "{{ user }}"
+  sudo: yes
+
+  tasks:
+
+    - name: Ensures NodeJs package is present and in the latest version
+      apt: name=nodejs update_cache=yes state=latest
