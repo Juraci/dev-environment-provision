@@ -1,0 +1,17 @@
+---
+
+- name: Ensures that the necessary gems are installed
+  hosts: "{{ node }}"
+  user: "{{ user }}"
+  sudo: no
+
+  vars:
+    app_path: '{{ ansible_env.HOME }}/TwitterForZombies'
+
+  tasks:
+
+    - name: Bundle install
+      command: bash -lc "bundle install" chdir={{ app_path }}/
+      register: command_result
+      failed_when: "command_result.rc != 0"
+      changed_when: "command_result.rc == 2"
