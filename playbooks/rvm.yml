@@ -8,7 +8,7 @@
   vars:
     gpg_server: hkp://keys.gnupg.net
     public_key: 409B6B1796C275462A1703113804BB82D39DC0E3
-    ruby: 2.1
+    ruby: 2.1.5
 
   tasks:
 
