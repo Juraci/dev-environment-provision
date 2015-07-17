@@ -1,0 +1,24 @@
+---
+
+- name: Ensures that the app initializes
+  hosts: "{{ node }}"
+  user: "{{ user }}"
+  sudo: no
+
+  tasks:
+
+    - include: app_vars.yml
+
+    - name: Rake db:setup
+      command: bash -lc "bundle exec rake db:setup" chdir={{ app_path }}/
+      register: command_result
+      failed_when: "command_result.rc != 0"
+      changed_when: "command_result.rc == 2"
+
+    - name: Start Rails
+      command: bash -lc "bundle exec rails s -p 8080" chdir={{ app_path }}/
+      register: command_result
+      failed_when: "command_result.rc != 0"
+      changed_when: "command_result.rc == 2"
+      async: 100
+      poll: 0
